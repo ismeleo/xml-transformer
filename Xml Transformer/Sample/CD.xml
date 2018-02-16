@@ -53,16 +53,16 @@
 		<TrackList>
 			<Track length="3:06" composer="Georges Bizet">Carmen</Track>
 			<Track length="4:15" composer="Franz Schubert">Ave Maria</Track>
-			<Track length="3:15" composer="Wolfgang Amadeus Mozart">Symphonie N°40 - 1er Mouvement</Track>
-			<Track length="2:55" composer="Johann Sebastian Bach">Cantate N°147</Track>
-			<Track length="3:02" composer="Anton Grigorevich Rubinstein">Melodie</Track>
-			<Track length="3:17" composer="Edvard Grieg">Danse D' Anitra</Track>
-			<Track length="3:29" composer="Antonio Vivaldi">Le Printemps - Les Quatre Saisons</Track>
-			<Track length="3:33" composer="Remo Giazotto, Tomaso Albinoni">Adagio D'Albinoni</Track>
-			<Track length="3:15" composer="Pablo de Sarasate">Airs Bohemiens</Track>
-			<Track length="2:33" composer="Antonín Dvořák">Humoresque</Track>
-			<Track length="3:23" composer="Frédéric Chopin">Etude En Mi</Track>
-			<Track length="3:47" composer="Isaac Albéniz">Prelude</Track>
+			<Track length="3:15" composer="Wolfgang Amadeus Mozart">Symphony No. 40 - 1st Movement</Track>
+			<Track length="2:55" composer="Johann Sebastian Bach">Cantate No. 147</Track>
+			<Track length="3:02" composer="Anton Grigorevich Rubinstein">Melody</Track>
+			<Track length="3:17" composer="Edvard Grieg">Anitra's Dance</Track>
+			<Track length="3:29" composer="Antonio Vivaldi">The Spring, Four Seasons</Track>
+			<Track length="3:33" composer="Remo Giazotto, Tomaso Albinoni">Albinoni's Adagio</Track>
+			<Track length="3:15" composer="Pablo de Sarasate">Zigeuner Weisen</Track>
+			<Track length="2:33" composer="Antonin Dvorak">Humoresque</Track>
+			<Track length="3:23" composer="Frederic Chopin">Etude in E</Track>
+			<Track length="3:47" composer="Isaac Albeniz">Prelude</Track>
 		</TrackList>
 	</CD>
 </Catalog>

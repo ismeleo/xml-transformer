@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-	<xsl:output method="html" encoding="utf-8" indent="yes" />
+	<xsl:output method="html" version="5" html-version="5.0" encoding="utf-8" indent="yes" />
+
 	<xsl:template match="/">
+		
 		<!--
-		<xsl:text disable-output-escaping='yes'>&lt;!DOCTYPE html&gt;</xsl:text>
+		<xsl:text disable-output-escaping="yes">&lt;!DOCTYPE html&gt;</xsl:text>
+		
+		<![CDATA[
+			<![DOCTYPE html>
+		]]>
 		-->
 		<html>
 			<head>
 				<style>
+				* {
+					font-family: 'Baskerville Old Face', Calibri, Arial;
+				}
 				table {
 					border-collapse: collapse;
 				}
@@ -41,6 +50,12 @@
 					padding-left: 3px;
 					color: #9cf;
 				}
+				tr.first-row:first-child {
+					border-top: inherit;
+				}
+				tr.first-row {
+					border-top: double 4px #ccc;
+				}
 				</style>
 			</head>
 			<body>
@@ -48,14 +63,14 @@
 				<thead>
 					<tr>
 						<th>CD</th>
-						<th>Tracklist</th>
+						<th>Track List</th>
 					</tr>
 				</thead>
 				<tbody>
 					<xsl:for-each select="/Catalog/CD">
 						<xsl:variable name="trackCount" select="count(TrackList/Track)"/>
 						<xsl:variable name="cover" select="Cover"/>
-						<tr>
+						<tr class="first-row">
 							<td rowspan="{$trackCount}">
 								<h4><xsl:value-of select="upper-case(Title)"/></h4>
 								<p>

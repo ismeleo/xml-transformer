@@ -441,6 +441,7 @@ namespace Xml_Transformer {
 		/// Xslt Version 2.0 Transformation
 		/// </summary>
 		public void TransformXmlV2(string xmlContent, string xsltPath, string outputPath) {
+			/*
 			var xml = new XmlDocument();
 			xml.LoadXml(xmlContent);
 			var dest = new TextWriterDestination(XmlWriter.Create(outputPath));
@@ -458,6 +459,37 @@ namespace Xml_Transformer {
 					dest.Close();
 				}
 				catch { }
+			}
+			*/
+
+			Random r = new Random();
+			int rInt = r.Next(0, 100);
+			var tempFile = @"c:\windows\temp\xt_" + new DateTime().ToString("yyyyMMddHHmmss") + rInt;
+			File.WriteAllText(tempFile, xmlContent, Encoding.UTF8);
+
+			var input = new FileInfo(tempFile);
+			var xslt = new FileInfo(xsltPath);
+			var output = new FileInfo(outputPath);
+
+			// Compile stylesheet
+			var processor = new Processor();
+			var compiler = processor.NewXsltCompiler();
+			var executable = compiler.Compile(new Uri(xslt.FullName));
+
+			// Do transformation to a destination
+			var destination = new DomDestination();
+			
+			using (var inputStream = input.OpenRead()) {
+				var transformer = executable.Load();
+				transformer.SetInputStream(inputStream, new Uri(input.DirectoryName));
+				transformer.Run(destination);
+			}
+
+			// Save result to a file (or whatever else you wanna do)
+			destination.XmlDocument.Save(output.FullName);
+
+			if (File.Exists(tempFile)) {
+				File.Delete(tempFile);
 			}
 		}
 
@@ -648,7 +680,6 @@ namespace Xml_Transformer {
 				_allFilesValidationMessage[schemaRow.Index] = new StringBuilder();
 
 				try {
-
 					foreach (DataGridViewRow xmlRow in dgvXmlFiles.Rows) {
 						if (stopThread) {
 							tsslStatus.Text = "Stopped";
@@ -702,6 +733,28 @@ namespace Xml_Transformer {
 			}
 
 			return true;
+		}
+
+		public void f() {
+			var xslt = new FileInfo(@"D:\Leo\Project\dotNetProject\xml-transformer\Xml Transformer\Sample\html.xslt");
+			var input = new FileInfo(@"D:\Leo\Project\dotNetProject\xml-transformer\Xml Transformer\Sample\CD.xml");
+			var output = new FileInfo(@"D:\Leo\Project\dotNetProject\xml-transformer\Xml Transformer\Sample\output.html");
+
+			// Compile stylesheet
+			var processor = new Processor();
+			var compiler = processor.NewXsltCompiler();
+			var executable = compiler.Compile(new Uri(xslt.FullName));
+
+			// Do transformation to a destination
+			var destination = new DomDestination();
+			using (var inputStream = input.OpenRead()) {
+				var transformer = executable.Load();
+				transformer.SetInputStream(inputStream, new Uri(input.DirectoryName));
+				transformer.Run(destination);
+			}
+
+			// Save result to a file (or whatever else you wanna do)
+			destination.XmlDocument.Save(output.FullName);
 		}
 	}
 }
