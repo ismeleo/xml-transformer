@@ -734,27 +734,5 @@ namespace Xml_Transformer {
 
 			return true;
 		}
-
-		public void f() {
-			var xslt = new FileInfo(@"D:\Leo\Project\dotNetProject\xml-transformer\Xml Transformer\Sample\html.xslt");
-			var input = new FileInfo(@"D:\Leo\Project\dotNetProject\xml-transformer\Xml Transformer\Sample\CD.xml");
-			var output = new FileInfo(@"D:\Leo\Project\dotNetProject\xml-transformer\Xml Transformer\Sample\output.html");
-
-			// Compile stylesheet
-			var processor = new Processor();
-			var compiler = processor.NewXsltCompiler();
-			var executable = compiler.Compile(new Uri(xslt.FullName));
-
-			// Do transformation to a destination
-			var destination = new DomDestination();
-			using (var inputStream = input.OpenRead()) {
-				var transformer = executable.Load();
-				transformer.SetInputStream(inputStream, new Uri(input.DirectoryName));
-				transformer.Run(destination);
-			}
-
-			// Save result to a file (or whatever else you wanna do)
-			destination.XmlDocument.Save(output.FullName);
-		}
 	}
 }
