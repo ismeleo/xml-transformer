@@ -470,13 +470,10 @@ namespace Xml_Transformer {
 			var input = new FileInfo(tempFile);
 			var xslt = new FileInfo(xsltPath);
 			var output = new FileInfo(outputPath);
-
-			// Compile stylesheet
+			
 			var processor = new Processor();
 			var compiler = processor.NewXsltCompiler();
 			var executable = compiler.Compile(new Uri(xslt.FullName));
-
-			// Do transformation to a destination
 			var destination = new DomDestination();
 			
 			using (var inputStream = input.OpenRead()) {
@@ -484,8 +481,7 @@ namespace Xml_Transformer {
 				transformer.SetInputStream(inputStream, new Uri(input.DirectoryName));
 				transformer.Run(destination);
 			}
-
-			// Save result to a file (or whatever else you wanna do)
+			
 			destination.XmlDocument.Save(output.FullName);
 
 			if (File.Exists(tempFile)) {
